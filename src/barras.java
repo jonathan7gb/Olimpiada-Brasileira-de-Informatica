@@ -6,34 +6,41 @@ public class barras {
         
         int n = 0;
         
-        do {
-            n = leia.nextInt();
-        } while (n < 1 || n > 100);
+        n = leia.nextInt();
         
-        int[] valores = new int[n];
-        int alturaMaxima = 0;
-        for (int i = 0; i < n; i++) {
-            valores[i] = leia.nextInt();
-            if (valores[i] > alturaMaxima) {
-                alturaMaxima = valores[i]; 
+        if(n >= 1 && n <= 100) {
+            
+            int[] valores = new int[n];
+            int alturaMaxima = 0;
+            for (int i = 0; i < n; i++) {
+                valores[i] = leia.nextInt();
+                if (!(valores[i] >= 0) && !(valores[i] <= n)) {
+                    break;
+                }
+                if (valores[i] > alturaMaxima) {
+                    alturaMaxima = valores[i]; 
+                }
             }
-        }
 
-        int[][] matriz = new int[alturaMaxima][n];
+            if(alturaMaxima <= 100 & alturaMaxima >= 0){
 
-        for (int j = 0; j < n; j++) {
-            int quantidadeDeUns = valores[j];
-            for (int i = 0; i < quantidadeDeUns; i++) {
-                matriz[alturaMaxima - 1 - i][j] = 1; 
-            }
-        }
+            int[][] matriz = new int[alturaMaxima][n];
 
-        for (int i = 0; i < alturaMaxima; i++) {
             for (int j = 0; j < n; j++) {
-                System.out.print(matriz[i][j]);
+                int quantidadeDeUns = valores[j];
+                for (int i = 0; i < quantidadeDeUns; i++) {
+                    matriz[alturaMaxima - 1 - i][j] = 1; 
+                }
+            }
+
+            for (int i = 0; i < alturaMaxima; i++) {
+                for (int j = 0; j < n; j++) {
+                    System.out.print(matriz[i][j] + " ");
+                }
+                System.out.println();
             }
         }
-
-        leia.close();
+            leia.close();
+        }
     }
 }
